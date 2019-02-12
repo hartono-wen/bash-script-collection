@@ -11,10 +11,10 @@ sudo apt-get install -y \
     gnupg-agent \
     software-properties-common;
 
-echo '===Add Docker''s official GPG key=============';
+echo '===Add official GPG key for Docker=============';
 sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
 
-echo $'===Add Docker\'s official repository=============';
+echo $'===Add official repository for Docker=============';
 sudo add-apt-repository -y \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \

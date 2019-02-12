@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo '===Start instaling Golang=============';
+echo '===Start installing Golang=============';
 echo '===Set up the variables for later usage=============';
 
 GO_PACKAGE_NAME="go1.11.5.linux-amd64.tar.gz";
