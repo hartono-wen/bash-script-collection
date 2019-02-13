@@ -2,8 +2,10 @@
 
 echo '===Start installing Node.js=============';
 
+echo '===Update the apt package index=============';
+sudo apt-get update;
+
 echo '===Install the needed application=============';
-sudo apt-get update -y;
 sudo apt-get install -y curl;
 
 echo '===Add official GPG key for Node.js=============';
