@@ -17,7 +17,7 @@ sudo dpkg -i packages-microsoft-prod.deb;
 echo '===Update the apt package index=============';
 sudo apt-get update;
 
-echo '===Install PostgreSQL=============';
+echo '===Install '$INSTALLED_MODULE_NAME'=============';
 sudo apt-get install -y dotnet-sdk-2.1;
 
 echo '===Remove unneeded artifacts=============';
