@@ -2,13 +2,15 @@
 
 INSTALLED_MODULE_NAME=".NET Core";
 
-echo '==='$INSTALLED_MODULE_NAME'=============';
+echo '===Start installing '$INSTALLED_MODULE_NAME'=============';
+
+echo '===Update the apt package index=============';
 sudo apt-get update;
 
 echo '===Install the needed application=============';
 sudo apt-get install -y wget apt-transport-https;
 
-echo '===Download package installer for '$INSTALLED_MODULE_NAME'=============';
+echo '===Download '$INSTALLED_MODULE_NAME$'\'s package installer=============';
 sudo wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb;
 
 echo '===Install '$INSTALLED_MODULE_NAME' package using dpkg=============';
