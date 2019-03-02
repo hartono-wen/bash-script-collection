@@ -58,7 +58,11 @@ sudo mkdir /var/lib/redis;
 sudo chown redis:redis /var/lib/redis;
 sudo chmod 770 /var/lib/redis;
 
+echo '===Start '$INSTALLED_MODULE_NAME$' service=============';
 sudo systemctl start redis;
+
+echo '===Make '$INSTALLED_MODULE_NAME$' service run automatically everytime the machine boots=============';
+sudo systemctl enable redis;
 
 echo '===Remove unneeded artifacts=============';
 sudo rm ./redis-stable.tar.gz;
