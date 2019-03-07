@@ -1,34 +1,51 @@
 #!/bin/bash
 
-echo '===Start installing Golang=============';
-echo '===Set up the variables for later usage=============';
+INSTALLED_MODULE_NAME="Go";
 
+echo '===Start installing '$INSTALLED_MODULE_NAME'=============';
+
+echo '===Set up the variables for later usage=============';
 GO_PACKAGE_NAME="go1.11.5.linux-amd64.tar.gz";
+GO_PACKAGE_DOWNLOAD_URL="https://dl.google.com/go/$GO_PACKAGE_NAME";
 BASH_RC_PATH="/etc/bash.bashrc";
 BASH_RC_BACKUP_PATH="$BASH_RC_PATH.bak";
-GO_DOWNLOAD_URL="https://dl.google.com/go/$GO_PACKAGE_NAME"
 
-echo $GO_PACKAGE_NAME;
-echo $BASH_RC_PATH;
-echo $BASH_RC_BACKUP_PATH;
+echo '===Write the values of the variables=============';
+echo 'GO_PACKAGE_NAME='$GO_PACKAGE_NAME'';
+echo 'GO_PACKAGE_DOWNLOAD_URL='$GO_PACKAGE_DOWNLOAD_URL'';
+echo 'BASH_RC_PATH='$BASH_RC_PATH'';
+echo 'BASH_RC_BACKUP_PATH='$BASH_RC_BACKUP_PATH'';
+
+echo '===Update the apt package index=============';
+sudo apt-get update;
 
 echo '===Install the needed application=============';
-sudo apt-get update;
 sudo apt-get install -y wget tar;
 
-echo '===Download Golang Package from official Google Golang website=============';
-sudo wget $GO_DOWNLOAD_URL;
+echo '===Download '$INSTALLED_MODULE_NAME$'\'s package installer=============';
+sudo wget -nc $GO_PACKAGE_DOWNLOAD_URL;
 
-echo '===Extract the Golang package and put it into the system application location=============';
+echo '===Extract '$INSTALLED_MODULE_NAME' package and put it into the system application location=============';
 sudo tar -C /usr/local -xzf $GO_PACKAGE_NAME;
 
 echo '===Backup the original environment variable file=============';
-sudo cp $BASH_RC_PATH $BASH_RC_BACKUP_PATH;
+if [ -e $BASH_RC_BACKUP_PATH ]
+then
+	echo '===Backup file '$BASH_RC_BACKUP_PATH' already exists============='
+else
+    echo '===Backup file '$BASH_RC_BACKUP_PATH' does not exist yet============='
+    sudo cp $BASH_RC_PATH $BASH_RC_BACKUP_PATH;
+	echo '===Backup file '$BASH_RC_BACKUP_PATH' is created now============='
+fi
 
 echo '===Set the needed environment variables=============';
 echo 'export GOROOT=/usr/local/go' >> $BASH_RC_PATH;
 echo 'export GOPATH=$HOME/go' >> $BASH_RC_PATH;
 echo 'export PATH=$PATH:$GOPATH/bin:$GOROOT/bin' >> $BASH_RC_PATH;
 
-echo '===Finish instaling Golang=============';
+echo '===Finish instaling '$INSTALLED_MODULE_NAME'=============';
+
+echo '===Check '$INSTALLED_MODULE_NAME' version=============';
+/usr/local/go/bin/go version;
+
 echo '===Please dont forget to reboot your computer so that the gopath is recognized by the computer=============';
