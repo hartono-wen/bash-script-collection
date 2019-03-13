@@ -6,6 +6,7 @@ echo '===Start installing '$INSTALLED_MODULE_NAME'=============';
 
 echo '===Set up the variables for later usage=============';
 BASH_RC_PATH="/etc/bash.bashrc";
+BASH_RC_BACKUP_PATH="$BASH_RC_PATH.bak";
 
 echo '===Update the apt package index=============';
 sudo apt-get update;
@@ -13,6 +14,17 @@ sudo apt-get update;
 echo '===Install '$INSTALLED_MODULE_NAME'=============';
 sudo apt-get install -y curl openjdk-8-jdk;
 
+echo '===Backup the original environment variable file=============';
+if [ -e $BASH_RC_BACKUP_PATH ]
+then
+	echo '===Backup file $BASH_RC_BACKUP_PATH already exists============='
+else
+    echo '===Backup file $BASH_RC_BACKUP_PATH does not exist yet============='
+    sudo cp $BASH_RC_PATH $BASH_RC_BACKUP_PATH;
+	echo '===Backup file $BASH_RC_BACKUP_PATH is created now============='
+fi
+
+echo '===Set the needed environment variables=============';
 echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> $BASH_RC_PATH;
 
 echo '===Finish instaling '$INSTALLED_MODULE_NAME'=============';
