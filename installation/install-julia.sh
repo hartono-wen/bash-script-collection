@@ -41,7 +41,7 @@ then
 else
     echo '===Backup file '$BASH_RC_BACKUP_PATH' does not exist yet============='
     sudo cp $BASH_RC_PATH $BASH_RC_BACKUP_PATH;
-	echo '===Backup file '$BASH_RC_BACKUP_PATH' is created now============='
+    echo '===Backup file '$BASH_RC_BACKUP_PATH' is created now============='
 fi
 
 echo '===Set the needed environment variables=============';
